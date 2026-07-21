@@ -12,7 +12,7 @@
 
     <section>
         <div class="container">
-            <h2>Hello</h2>
+            <input type="text" name="" id="dob" class="border w-[40%] px-2 py-1">
         </div>
     </section>
 
@@ -34,5 +34,17 @@
             <h2>Hello</h2>
         </div>
     </section>
+
+    <script>
+        NepaliCalendar.attach('#dob', {
+            lang: 'ne', // 'ne' Nepali script, or 'en'
+            nepaliDigits: true,
+            hiddenInputName: 'dob_ad', // auto-created hidden field, holds the AD value
+            onSelect: function(result) {
+                console.log(result.bsFormatted); // e.g. "२०८२ श्रावण १५"
+                console.log(result.adFormatted); // e.g. "2025-07-30"
+            }
+        });
+    </script>
 
 </x-layout>

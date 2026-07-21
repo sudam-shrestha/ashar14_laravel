@@ -1,8 +1,9 @@
 <?php
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Sudam\SudamSweetAlert\Facades\SudamSweetAlert;
 
 Route::get("/", function () {
     return view("welcome");
@@ -22,5 +23,12 @@ Route::get("/home", function () {
 });
 
 Route::post("/save-course", function (Request $request) {
-    return $request;
+    // return $request;
+    $course = new Course();
+    $course->name = $request->course_name;
+    $course->price= $request->price;
+    $course->description = $request->description;
+    $course->save();
+    SudamSweetAlert::toast('success', 'Saved!');
+    return redirect('/courses');
 });
