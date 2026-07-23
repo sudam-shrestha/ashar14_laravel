@@ -2,7 +2,10 @@
 
     <section>
         <div class="container py-16">
-            <h1 class="text-4xl text-center mb-8">Create Course</h1>
+            <div class="flex justify-between items-center">
+                <h1 class="text-4xl text-center mb-8">Course Create</h1>
+                <a href="/courses" class="bg-[purple] text-white px-6 py-2 rounded-full">go back</a>
+            </div>
 
             <form action="/save-course" method="post">
                 @csrf

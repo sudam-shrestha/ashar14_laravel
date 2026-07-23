@@ -13,20 +13,27 @@ Route::get("/about", function () {
     return view("about");
 });
 
+// Dynamic Route/ Route Parameter
+// Route::get("/demo/{id}", function($idddd){
+//     return "demo" . $idddd;
+// });
+
+// Courses Routes
 Route::get("/courses", function () {
-    return view("courses");
+    $courses = Course::all();
+    // return $courses;
+    return view("course.index", compact('courses'));
 });
 
-Route::get("/home", function () {
-    // return view('welcome');
-    return redirect("/");
+Route::get("/course/create", function () {
+    return view("course.create");
 });
 
 Route::post("/save-course", function (Request $request) {
     // return $request;
     $course = new Course();
     $course->name = $request->course_name;
-    $course->price= $request->price;
+    $course->price = $request->price;
     $course->description = $request->description;
     $course->save();
     SudamSweetAlert::toast('success', 'Saved!');
