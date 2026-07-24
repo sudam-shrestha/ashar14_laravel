@@ -10,10 +10,9 @@
             <a href="/courses">Courses</a>
         </div>
         <div>
-            <a href="" class="bg-[purple] text-white px-6 py-2 rounded-full">
+            <a href="/admission/index" class="bg-[purple] text-white px-6 py-2 rounded-full">
                 Admission
             </a>
         </div>
     </nav>
 </header>
-

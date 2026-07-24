@@ -30,8 +30,16 @@
                             <td class="border border-gray-300 py-2">{{ $loop->iteration }}</td>
                             <td class="border border-gray-300 py-2">{{ $course->name }}</td>
                             <td class="border border-gray-300 py-2">Rs.{{ $course->price }}/-</td>
-                            <td class="border border-gray-300 py-2">
-                                Edit Delete
+                            <td class="border border-gray-300 py-2 flex gap-2 justify-center">
+                                <a href="/course/edit/{{$course->id}}">
+                                    Edit
+                                </a>
+                                <form action="/course/delete/{{ $course->id }}" method="post">
+                                    @csrf
+                                    @method('delete')
+
+                                    <button type="submit">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Admission;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,49 @@ Route::post("/save-course", function (Request $request) {
     $course->price = $request->price;
     $course->description = $request->description;
     $course->save();
-    SudamSweetAlert::toast('success', 'Saved!');
+    SudamSweetAlert::toast('success', 'Course Created Successfully!');
     return redirect('/courses');
+});
+
+Route::delete("/course/delete/{id}", function ($id) {
+    // return "delete" . $id;
+    Course::find($id)->delete();
+    SudamSweetAlert::toast('success', 'Course Deleted Successfully!');
+    return redirect("/courses");
+});
+
+
+Route::get("/course/edit/{id}", function ($id) {
+    // return "delete" . $id;
+    $course = Course::find($id);
+    return view("course.edit", compact('course'));
+});
+
+
+Route::patch("/course/update/{id}", function (Request $request, $id) {
+    // return $request;
+    // $course = new Course();
+    $course = Course::find($id);
+    $course->name = $request->course_name;
+    $course->price = $request->price;
+    $course->description = $request->description;
+    $course->save();
+    SudamSweetAlert::toast('success', 'Course Updated Successfully!');
+    return redirect('/courses');
+});
+
+
+Route::get("/admission/index", function(){
+    $admissions = Admission::all();
+    return view('admission.index');
+});
+
+
+Route::get("/admission/create", function(){
+    return view('admission.create');
+});
+
+
+Route::get("/admission/edit/{id}", function($id){
+    return view('admission.edit');
 });
